@@ -18,7 +18,7 @@ function Command(sock, msg, url) {
 	this.url	= url;
 	if(!("version" in this.msg))
 		this.msg.version = 1;
-	if("checksum" in msg && msg.checksum != this.generateChecksum()) {
+	if("checksum" in this.msg && this.msg.checksum != this.generateChecksum()) {
 		throw new Error("Invalid checksum");
 	}
 }
