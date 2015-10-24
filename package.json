@@ -2,7 +2,7 @@
   "name": "CommandWS.js",
   "version": "1.0.0",
   "description": "",
-  "main": "CommandWS.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/FCO/CommandWS.js",
   "dependencies": {
+    "crypto": "0.0.3",
     "tv4": "^1.2.7"
   }
 }
