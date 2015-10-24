@@ -1,6 +1,6 @@
 var Command = require("./Command.js");
 const util = require('util');
-const EventEmitter = require('events');
+const EventEmitter = require('events').EventEmitter;
 const tv4 = require("tv4");
 
 module.exports = CommandWS;
