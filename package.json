@@ -1,0 +1,22 @@
+{
+  "name": "CommandWS.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Command.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FCO/CommandWS.js.git"
+  },
+  "author": "Fernando Correa de Oliveira <fco@cpan.org>",
+  "license": "Artistic",
+  "bugs": {
+    "url": "https://github.com/FCO/CommandWS.js/issues"
+  },
+  "homepage": "https://github.com/FCO/CommandWS.js",
+  "dependencies": {
+    "tv4": "^1.2.7"
+  }
+}
