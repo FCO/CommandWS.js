@@ -17,6 +17,10 @@ function CommandWS(url, via) {
 	this._url.href = url;
 	this._ssl = this._url.protocol == "ws:" || this._url.protocol == "https:";
 	this._init();
+	window.addEventListener('online', function() {
+		if(this._ws.readyState != WebSocket.OPEN)
+			this._init()
+	}.bind(this));
 }
 
 util.inherits(CommandWS, EventEmitter);
@@ -147,6 +151,7 @@ CommandWS.prototype._onListCommands	= function(command) {
 			return trans_id;
 		}.bind(this);
 	}.bind(this))
+	this._counters = [1,1];
 	this.emit("open");
 };
 
