@@ -5,6 +5,7 @@ const tv4 = require("tv4");
 
 module.exports = CommandWS;
 function CommandWS(url, via) {
+	this._counters = [1, 1];
 	EventEmitter.call(this);
 	if(via == null) {
 		via = window.WebSocket != undefined ? "ws" : "lp";
@@ -50,15 +51,27 @@ CommandWS.prototype._init	= function() {
 	if(this.via == "ws") {
 		this._ws		= new WebSocket(this.url);
 		this._ws.onmessage	= this._onMessage.bind(this);
-		this._ws.onclose	= this._init.bind(this);
 		this._ws.onopen		= this._onOpen.bind(this);
 		this._ws.onerror	= this.emit.bind(this, "error");
+		this._ws.onclose	= function() {
+			setTimeout(this._init.bind(this), this._nextTimeOut(100));
+		}.bind(this);
 	} else {
 		this._xhr = new XMLHttpRequest();
 		this._xhr.open("GET", this.url, true);
 		this._xhr.onreadystatechange = this._onReadyStateChange.bind(this);
 		this._xhr.send();
 	}
+};
+
+CommandWS.prototype._nextTimeOut	= function(times) {
+	if(this._counters == null)
+		return 100 * times;
+	var num = this._counters.shift();
+	this._counters.push(this._counters[0] + num);
+	if(num >= 100)
+		this._counters = null;
+	return num * times;
 };
 
 CommandWS.prototype._onOpen	= function() {
